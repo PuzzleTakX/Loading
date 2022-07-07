@@ -1,0 +1,75 @@
+﻿Build1=Default,b4a.example
+Group=Default Group
+Library1=core
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="30"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=BMX_Loading
+Module2=Starter
+NumberOfFiles=0
+NumberOfLibraries=1
+NumberOfModules=2
+Version=11.8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Made By PuzzleTak
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	
+End Sub
+
+Sub Globals
+	Dim loader As BMX_Loading
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	
+	loader.Initialize("loader")
+	Activity.AddView(loader.AsView,10%x,50%y - 10%x,80%x,2%x)
+	
+	loader.initLib
+	loader.RadiusLoader = 10
+	
+	Dim b As Button
+	b.Initialize("b")
+	Activity.AddView(b,10%x,100%y - 10%x,80%x,10%x)
+	b.Text = "start"
+	
+	Dim bx As Button
+	bx.Initialize("bx")
+	Activity.AddView(bx,10%x,100%y - 20%x,80%x,10%x)
+	bx.Text = "chenge color"
+	
+	
+
+End Sub
+
+
+Sub bx_Click
+	loader.ColorLoader = Colors.RGB(Rnd(50,200),Rnd(50,200),Rnd(50,200))
+End Sub
+Sub b_Click
+	If loader.isRun Then
+		loader.stop
+		Else
+		loader.start
+	End If
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
